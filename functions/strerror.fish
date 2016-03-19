@@ -1,4 +1,11 @@
 function strerror -a number -d "Print the error message corresponding to an error code or number"
+  if [ -z $number ]
+    for errno in (seq 1 121)
+      echo $errno (strerror $errno)
+    end
+    return 0
+  end
+
   switch "$number"
   case '1' 'EPERM'
     echo 'Not owner'
